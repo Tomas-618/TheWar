@@ -2,6 +2,6 @@
 {
     public class AK47 : Weapon
     {
-        public override void Attack(IDamagable target) { }
+        public AK47(in int damage, in int bulletsInClipCount) : base(damage, bulletsInClipCount) { }
     }
 }

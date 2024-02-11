@@ -3,6 +3,6 @@
     internal class Program
     {
         private static void Main() =>
-            new Platoon().Start();
+            new War().Start();
     }
 }

@@ -2,6 +2,6 @@
 {
     public class Mossberg500 : Weapon
     {
-        public override void Attack(IDamagable target) { }
+        public Mossberg500(in int damage, in int bulletsInClipCount) : base(damage, bulletsInClipCount) { }
     }
 }

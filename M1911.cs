@@ -2,6 +2,6 @@
 {
     public class M1911 : Weapon
     {
-        public override void Attack(IDamagable target) { }
+        public M1911(in int damage, in int bulletsInClipCount) : base(damage, bulletsInClipCount) { }
     }
 }
