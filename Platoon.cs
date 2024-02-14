@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSLight
 {
@@ -27,6 +28,11 @@ namespace CSLight
         {
             if (enemies == null)
                 throw new ArgumentNullException(nameof(enemies));
+
+            _warriors = _warriors.Where(warrior => warrior.IsAlive).ToList();
+
+            if (_warriors.Count <= 0)
+                return;
 
             for (int i = 0; i < enemies.Count; i++)
             {

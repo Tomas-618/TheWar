@@ -22,6 +22,7 @@ namespace CSLight
                     _health = value;
             }
         }
+        public bool IsAlive => Health > 0;
 
         public Warrior(Weapon weapon)
         {
@@ -50,6 +51,7 @@ namespace CSLight
         private void Fill(Weapon weapon)
         {
             _weapon = weapon;
+            _health = MaxHealth;
         }
     }
 }
