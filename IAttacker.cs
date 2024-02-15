@@ -1,7 +1,9 @@
-﻿namespace CSLight
+﻿using System.Collections.Generic;
+
+namespace CSLight
 {
     public interface IAttacker
     {
-        void Attack(IDamagable target);
+        void Attack(params IDamagable[] target);
     }
 }

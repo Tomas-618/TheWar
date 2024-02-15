@@ -14,8 +14,8 @@ namespace CSLight
             return new List<Weapon>
             {
                 new M1911(30, 7),
-                new GrenadeLauncher(10, 30),
-                new Mossberg500(12, 8)
+                new Mossberg500(20, 8),
+                new AK47(6, 30)
             };
         }
     }

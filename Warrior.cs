@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CSLight
 {
-    public class Warrior : IDamagable, IAttacker
+    public class Warrior : IDamagable, IReadOnlyHealth
     {
         public const int MaxHealth = 100;
 
         private Weapon _weapon;
         private int _health;
+        private int _armor;
 
         public int Health
         {
@@ -22,34 +24,41 @@ namespace CSLight
                     _health = value;
             }
         }
-        public bool IsAlive => Health > 0;
 
-        public Warrior(Weapon weapon)
-        {
-            if (weapon == null)
-                throw new ArgumentNullException(nameof(weapon));
+        public bool IsDied => Health <= 0;
 
-            Fill(weapon);
-        }
+        public Warrior(Weapon weapon, in int armor) =>
+            Fill(weapon, armor);
 
-        public void TakeDamage(in int damage)
+        public void TakeDamage(int damage)
         {
             if (damage <= 0)
                 throw new ArgumentOutOfRangeException(nameof(damage));
 
+            int minDamage = 1;
+
+            damage -= _armor;
+            UserUtils.LimitNumberInRange(ref damage, minDamage);
+
             Health -= damage;
         }
 
-        public void Attack(IDamagable target)
+        public void Attack(IReadOnlyList<IDamagable> enemies)
         {
-            if (target == null)
-                throw new ArgumentNullException(nameof(target));
+            if (enemies == null)
+                throw new ArgumentNullException(nameof(enemies));
 
-            _weapon.Attack(target);
+            _weapon.Attack(enemies);
         }
 
-        private void Fill(Weapon weapon)
+        private void Fill(Weapon weapon, in int armor)
         {
+            if (weapon == null)
+                throw new ArgumentNullException(nameof(weapon));
+
+            if (armor < 0)
+                throw new ArgumentOutOfRangeException(nameof(armor));
+
             _weapon = weapon;
             _health = MaxHealth;
         }

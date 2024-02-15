@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CSLight
 {
-    public abstract class Weapon : IAttacker
+    public abstract class Weapon
     {
         private readonly int _bulletsInClipCount;
 
@@ -18,10 +19,10 @@ namespace CSLight
             Fill(damage);
         }
 
-        public void Attack(IDamagable target)
+        public void Attack(IReadOnlyList<IDamagable> enemies)
         {
-            if (target == null)
-                throw new ArgumentNullException(nameof(target));
+            if (enemies == null)
+                throw new ArgumentNullException(nameof(enemies));
 
             if (_bulletsCount <= 0)
             {
@@ -31,7 +32,7 @@ namespace CSLight
             }
 
             _bulletsCount--;
-            target.TakeDamage(_damage);
+            enemies[0].TakeDamage(_damage);
         }
 
         private void Reload() =>
