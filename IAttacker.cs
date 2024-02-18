@@ -4,6 +4,6 @@ namespace CSLight
 {
     public interface IAttacker
     {
-        void Attack(params IDamagable[] target);
+        void Attack(IReadOnlyList<IDamagable> targets, in int targetIndex);
     }
 }

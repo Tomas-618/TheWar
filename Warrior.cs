@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace CSLight
 {
-    public class Warrior : IDamagable, IReadOnlyHealth
+    public class Warrior : IAttacker, IDamagable, IReadOnlyHealth
     {
         public const int MaxHealth = 100;
 
-        private Weapon _weapon;
+        private IAttacker _weapon;
         private int _health;
         private int _armor;
 
@@ -27,7 +27,7 @@ namespace CSLight
 
         public bool IsDied => Health <= 0;
 
-        public Warrior(Weapon weapon, in int armor) =>
+        public Warrior(IAttacker weapon, in int armor) =>
             Fill(weapon, armor);
 
         public void TakeDamage(int damage)
@@ -43,15 +43,15 @@ namespace CSLight
             Health -= damage;
         }
 
-        public void Attack(IReadOnlyList<IDamagable> enemies)
+        public void Attack(IReadOnlyList<IDamagable> targets, in int targetIndex)
         {
-            if (enemies == null)
-                throw new ArgumentNullException(nameof(enemies));
+            if (targets == null)
+                throw new ArgumentNullException(nameof(targets));
 
-            _weapon.Attack(enemies);
+            _weapon.Attack(targets, targetIndex);
         }
 
-        private void Fill(Weapon weapon, in int armor)
+        private void Fill(IAttacker weapon, in int armor)
         {
             if (weapon == null)
                 throw new ArgumentNullException(nameof(weapon));
@@ -61,6 +61,10 @@ namespace CSLight
 
             _weapon = weapon;
             _health = MaxHealth;
+            _armor = armor;
         }
+
+        public override string ToString() =>
+            $"Health = {Health} || Armor = {_armor} || Weapon: {_weapon}";
     }
 }

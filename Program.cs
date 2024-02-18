@@ -1,4 +1,6 @@
-﻿namespace CSLight
+﻿using System;
+
+namespace CSLight
 {
     internal class Program
     {

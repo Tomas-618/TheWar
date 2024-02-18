@@ -2,7 +2,7 @@
 
 namespace CSLight
 {
-    public struct UserUtils
+    public class UserUtils
     {
         public const int MinPercent = 1;
         public const int MaxPercent = 100;
@@ -12,7 +12,7 @@ namespace CSLight
         static UserUtils() =>
             _random = new Random();
 
-        public static bool IsEnteredDesiredAnswer(string positive = "yes", string negative = "no")
+        public static bool TryAnswer(string positive = "yes", string negative = "no")
         {
             string userInput = Console.ReadLine();
 
@@ -37,20 +37,20 @@ namespace CSLight
             Console.ReadKey(true);
         }
 
-        public static bool IsChanceTrue(in int desiredPercent)
+        public static bool CheckChance(in int desiredPercent)
         {
             if (desiredPercent < 0 || desiredPercent > MaxPercent)
                 throw new ArgumentOutOfRangeException(nameof(desiredPercent));
 
-            int randomPercent = _random.Next(MinPercent, MaxPercent.GetIncreasedByOne());
+            int randomPercent = _random.Next(MinPercent, MaxPercent + 1);
 
             return randomPercent <= desiredPercent;
         }
 
         public static int GetRandomNumber(in int maxValue) =>
-            _random.Next(maxValue.GetIncreasedByOne());
+            _random.Next(maxValue + 1);
 
         public static int GetRandomNumber(in int minValue, in int maxValue) =>
-            _random.Next(minValue, maxValue.GetIncreasedByOne());
+            _random.Next(minValue, maxValue + 1);
     }
 }

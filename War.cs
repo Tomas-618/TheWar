@@ -6,6 +6,8 @@ namespace CSLight
     {
         private Platoon _firstCountry;
         private Platoon _secondCountry;
+        private UI _firstCountryUI;
+        private UI _secondCountryUI;
         private int _duration;
 
         public War() =>
@@ -21,43 +23,62 @@ namespace CSLight
             {
                 Platoon firstCountry = _firstCountry;
                 Platoon secondCountry = _secondCountry;
+                UI firstCountryUI = _firstCountryUI;
+                UI secondCountryUI = _secondCountryUI;
 
                 int firstPlatoonChoosePercent = 50;
 
-                if (UserUtils.IsChanceTrue(firstPlatoonChoosePercent))
+                if (UserUtils.CheckChance(firstPlatoonChoosePercent))
                 {
                     firstCountry = _secondCountry;
                     secondCountry = _firstCountry;
+                    firstCountryUI = _secondCountryUI;
+                    secondCountryUI = _firstCountryUI;
                 }
 
-                Console.WriteLine("The War is about to begin...");
+                Console.WriteLine("The War is about to begin...\n");
+                ShowInfo(firstCountryUI, secondCountryUI);
 
                 while (IsRunning)
                 {
-                    //UserUtils.WaitForClick();
-                    Console.WriteLine("\n");
+                    UserUtils.WaitForClick();
+                    Console.Clear();
 
                     _duration++;
                     Console.Write($"{_duration}) ");
 
-                    firstCountry.Attack(secondCountry.Warriors);
+                    firstCountry.Offense(secondCountry.Warriors);
                     secondCountry.RemoveDiedWairriors();
 
-                    secondCountry.Attack(firstCountry.Warriors);
+                    secondCountry.Offense(firstCountry.Warriors);
                     firstCountry.RemoveDiedWairriors();
 
+                    ShowInfo(_firstCountryUI, _secondCountryUI);
                 }
 
                 Console.WriteLine("\n");
                 ShowResult(firstCountry, secondCountry, _duration);
 
                 Console.WriteLine("\nDo you want to start the War again?");
-                isContinue = UserUtils.IsEnteredDesiredAnswer();
+                isContinue = UserUtils.TryAnswer();
                 Console.Clear();
 
                 if (isContinue)
                     Fill();
             }
+        }
+
+        private void ShowInfo(UI firstCountryUI, UI secondCountryUI)
+        {
+            string board = new string('-', 100);
+
+            Console.WriteLine("First platoon: ");
+            firstCountryUI.ShowInfo();
+
+            Console.WriteLine($"\n{board}\n");
+
+            Console.WriteLine("Second platoon: ");
+            secondCountryUI.ShowInfo();
         }
 
         private void ShowResult(Platoon firstCountry, Platoon secondCountry, in int duration)
@@ -78,6 +99,8 @@ namespace CSLight
         {
             _firstCountry = new Platoon();
             _secondCountry = new Platoon();
+            _firstCountryUI = new UI(_firstCountry);
+            _secondCountryUI = new UI(_secondCountry);
             _duration = 0;
         }
     }

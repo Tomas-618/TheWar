@@ -20,7 +20,7 @@ namespace CSLight
 
         public bool IsAllive => Warriors.Count > 0;
         
-        public void Attack(IReadOnlyList<IDamagable> enemies)
+        public void Offense(IReadOnlyList<IDamagable> enemies)
         {
             if (enemies == null)
                 throw new ArgumentNullException(nameof(enemies));
@@ -28,11 +28,11 @@ namespace CSLight
             if (_warriors.Count <= 0)
                 return;
 
-            for (int i = 0; i < enemies.Count; i++)
+            for (int i = 0; i < _warriors.Count; i++)
             {
-                int currentWarriorIndex = i % _warriors.Count;
+                int currentEnemyIndex = i % enemies.Count;
 
-                _warriors[currentWarriorIndex].Attack(enemies);
+                _warriors[i].Attack(enemies, currentEnemyIndex);
             }
         }
 
@@ -52,10 +52,9 @@ namespace CSLight
             {
                 int maxArmor = 70;
 
-                int weaponIndex = UserUtils.GetRandomNumber(_bunker.Weapons.Count.GetReducedByOne());
                 int armor = UserUtils.GetRandomNumber(maxArmor);
 
-                _warriors.Add(new Warrior(_bunker.Weapons[weaponIndex], armor));
+                _warriors.Add(new Warrior(_bunker.GetRandomWeapon(), armor));
             }
         }
     }
