@@ -20,6 +20,7 @@ namespace CSLight
         }
 
         public int BulletsInClipCount => _maxBulletsCount;
+
         public bool IsHaveBullets => _bulletsCount > 0;
 
         public void AttackInRange(IReadOnlyList<IDamagable> targets, params int[] indexesAttackRange)
@@ -43,6 +44,9 @@ namespace CSLight
             }
         }
 
+        public override string ToString() =>
+            $"Damage = {_damage} || Bullets count: {_bulletsCount}";
+
         private void Reload() =>
             _bulletsCount = _maxBulletsCount;
 
@@ -51,8 +55,5 @@ namespace CSLight
             _damage = damage;
             Reload();
         }
-
-        public override string ToString() =>
-            $"Damage = {_damage} || Bullets count: {_bulletsCount}";
     }
 }

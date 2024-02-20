@@ -51,6 +51,9 @@ namespace CSLight
             _weapon.Attack(targets, targetIndex);
         }
 
+        public override string ToString() =>
+            $"Health = {Health} || Armor = {_armor} || Weapon: {_weapon}";
+
         private void Fill(IAttacker weapon, in int armor)
         {
             if (weapon == null)
@@ -63,8 +66,5 @@ namespace CSLight
             _health = MaxHealth;
             _armor = armor;
         }
-
-        public override string ToString() =>
-            $"Health = {Health} || Armor = {_armor} || Weapon: {_weapon}";
     }
 }

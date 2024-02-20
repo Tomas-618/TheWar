@@ -16,7 +16,7 @@ namespace CSLight
         }
 
         public void Attack(IReadOnlyList<IDamagable> targets, in int targetIndex) =>
-            _clip.AttackInRange(targets, targetIndex, targetIndex.GetReducedByOne(), targetIndex.GetIncreasedByOne());
+            _clip.AttackInRange(targets, targetIndex, targetIndex - 1, targetIndex + 1);
 
         public override string ToString() =>
             $"({nameof(Mossberg500)}: {_clip})";

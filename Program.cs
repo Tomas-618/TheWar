@@ -1,14 +1,8 @@
-﻿using System;
-
-namespace CSLight
+﻿namespace CSLight
 {
     internal class Program
     {
-        private static void Main()
-        {
+        private static void Main() =>
             new War().Start();
-
-            Platoon platoon = new Platoon();
-        }
     }
 }

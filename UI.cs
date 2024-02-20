@@ -13,7 +13,7 @@ namespace CSLight
         {
             for (int i = 0; i < _platoon.Warriors.Count; i++)
             {
-                int currentWarriorIndex = i.GetIncreasedByOne();
+                int currentWarriorIndex = i + 1;
 
                 Console.WriteLine($"{currentWarriorIndex}) {_platoon.Warriors[i]}");
             }

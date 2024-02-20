@@ -53,7 +53,7 @@ namespace CSLight
                     secondCountry.Offense(firstCountry.Warriors);
                     firstCountry.RemoveDiedWairriors();
 
-                    ShowInfo(_firstCountryUI, _secondCountryUI);
+                    ShowInfo(firstCountryUI, secondCountryUI);
                 }
 
                 Console.WriteLine("\n");
