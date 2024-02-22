@@ -19,7 +19,7 @@ namespace CSLight
         {
             int desiredPercent = 60;
 
-            if (UserUtils.CheckChance(desiredPercent))
+            if (UserUtils.IsSuccess(desiredPercent))
                 _clip.AttackInRange(targets, targetIndex);
         }
 

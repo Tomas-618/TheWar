@@ -15,7 +15,7 @@ namespace CSLight
 
         public bool IsRunning => _firstCountry.IsAllive && _secondCountry.IsAllive;
 
-        public void Start()
+        public void Process()
         {
             bool isContinue = true;
 
@@ -28,7 +28,7 @@ namespace CSLight
 
                 int firstPlatoonChoosePercent = 50;
 
-                if (UserUtils.CheckChance(firstPlatoonChoosePercent))
+                if (UserUtils.IsSuccess(firstPlatoonChoosePercent))
                 {
                     firstCountry = _secondCountry;
                     secondCountry = _firstCountry;

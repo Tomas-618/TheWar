@@ -2,7 +2,11 @@
 {
     internal class Program
     {
-        private static void Main() =>
-            new War().Start();
+        private static void Main()
+        {
+            War war = new War();
+
+            war.Process();
+        }
     }
 }

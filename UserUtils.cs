@@ -37,7 +37,7 @@ namespace CSLight
             Console.ReadKey(true);
         }
 
-        public static bool CheckChance(in int desiredPercent)
+        public static bool IsSuccess(in int desiredPercent)
         {
             if (desiredPercent < 0 || desiredPercent > MaxPercent)
                 throw new ArgumentOutOfRangeException(nameof(desiredPercent));
