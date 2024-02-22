@@ -19,7 +19,7 @@ namespace CSLight
             Type type = typeof(T);
 
             if (_weaponsMap.ContainsKey(type) == false)
-                throw new InvalidOperationException("Такого оружия нет!");
+                throw new InvalidOperationException("Can't find weapon");
 
             return _weaponsMap[type].Invoke();
         }

@@ -14,7 +14,7 @@ namespace CSLight
         public int Health
         {
             get => _health;
-            set
+            private set
             {
                 if (value >= MaxHealth)
                     _health = MaxHealth;
@@ -32,8 +32,8 @@ namespace CSLight
 
         public void TakeDamage(int damage)
         {
-            if (damage <= 0)
-                throw new ArgumentOutOfRangeException(nameof(damage));
+            if (damage < 0)
+                throw new ArgumentOutOfRangeException($"damage: {damage}");
 
             int minDamage = 1;
 

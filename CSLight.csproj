@@ -50,7 +50,6 @@
     <Compile Include="Platoon.cs" />
     <Compile Include="IRangeAttacker.cs" />
     <Compile Include="IDamagable.cs" />
-    <Compile Include="Int32Extension.cs" />
     <Compile Include="M1911.cs" />
     <Compile Include="MilitaryBunker.cs" />
     <Compile Include="Mossberg500.cs" />

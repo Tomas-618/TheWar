@@ -32,7 +32,7 @@ namespace CSLight
             }
         }
 
-        public override string ToString() =>
-            $"({nameof(AK47)}: {_clip})";
+        //public override string ToString() =>
+        //    $"({nameof(AK47)}: {_clip})";
     }
 }
